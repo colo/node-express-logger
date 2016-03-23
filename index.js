@@ -94,11 +94,22 @@ module.exports = new Class({
 	  
 	});
 	
-	app['profile'] = function(string){
+	this.extend_app(app);
+	app.addEvent(app.ON_LOAD_APP, this.extend_app.bind(this));
+	
+	
+	
+// 	console.log(server);
+  },
+  extend_app: function(app){
+	//console.log('extend app');
+	//console.log(app);
+	
+	var profile = function(string){
 	  this.logger.loggers.get('profiling').profile(string);
 	}.bind(this);
 	
-	app['log'] = function(name, type, string){
+	var log = function(name, type, string){
 	  
 // 	  console.log(this.logger.loggers.get('access'));
 	  
@@ -106,15 +117,25 @@ module.exports = new Class({
 		this.logger.loggers.add(name, {
 		  transports: [
 			new (winston.transports.File)( {
-			  filename: path.resolve(options.path) + '/' + name + '_log'
+			  filename: path.resolve(this.options.path) + '/' + name + '_log'
 			}),
 		  ]
 		});
 		
 	  this.logger.loggers.get(name).log(type, string);
 	}.bind(this);
-	
-// 	console.log(server);
+		
+	if(typeof(app) == 'function'){
+		app.implement({
+			profile: profile,
+			log: log
+		});
+	}
+	else{
+		app['profile'] = profile;
+		
+		app['log'] = log;
+	}
   },
   //express middleware
   access: function(){
