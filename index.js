@@ -10,7 +10,7 @@ module.exports = new Class({
   
   initialize: function(app, options){
 	
-// 	console.log(util.inspect(server,{depth: 10}));
+// 	//console.log(util.inspect(server,{depth: 10}));
 	
 	this.setOptions(options);
 // 	
@@ -35,8 +35,8 @@ module.exports = new Class({
 	this.logger = winston;
 // 	this.logger.exitOnError = false;
 	
-// 	console.log('logger');
-// 	console.log(this);
+// 	//console.log('logger');
+// 	//console.log(this);
 // 	
 // 	
 	this.logger.loggers.options.transports = [
@@ -99,11 +99,11 @@ module.exports = new Class({
 	
 	
 	
-// 	console.log(server);
+// 	//console.log(server);
   },
   extend_app: function(app){
-	//console.log('extend app');
-	//console.log(app);
+	////console.log('extend app');
+	////console.log(app);
 	
 	var profile = function(string){
 	  this.logger.loggers.get('profiling').profile(string);
@@ -111,7 +111,7 @@ module.exports = new Class({
 	
 	var log = function(name, type, string){
 	  
-// 	  console.log(this.logger.loggers.get('access'));
+// 	  //console.log(this.logger.loggers.get('access'));
 	  
 	  if(!this.logger.loggers[name])
 		this.logger.loggers.add(name, {
