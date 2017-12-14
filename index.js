@@ -49,7 +49,7 @@ module.exports = new Class({
 			}.bind(this));
 		}
 		
-		this.extend_app(app);
+		//this.extend_app(app);
 		
 		app.addEvent(app.ON_LOAD_APP, this.extend_app.bind(this));
 		
@@ -102,6 +102,11 @@ module.exports = new Class({
 
 		if(obj.transport == winston.transports.File && options.filename == null){
 			options.filename = path.resolve(this.options.path) + '/' + id + '.log';
+		}
+		
+		//Logstash
+		if(options.node_name){
+			options.node_name += '.'+id;
 		}
 		
 		//var transport = 
