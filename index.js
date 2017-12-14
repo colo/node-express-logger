@@ -99,8 +99,12 @@ module.exports = new Class({
 		
 		if(process.env.LOG_ENV)
 			options.level = process.env.LOG_ENV;
-
-		if(obj.transport == winston.transports.File && options.filename == null){
+		
+		//console.log(winston.transports.File);
+		
+		//if(obj.transport == winston.transports.File && options.filename == null){
+		if(options.filename == null){
+			
 			options.filename = path.resolve(this.options.path) + '/' + id + '.log';
 		}
 		
@@ -110,12 +114,13 @@ module.exports = new Class({
 		}
 		
 		//var transport = 
-		//console.log(transport);
+		//console.log(options.filename);
 		return new (obj.transport)( options );
 	},
   extend_app: function(app){
 		
 		var profile = function(string){
+			
 			this.instance.loggers.get('profiling').profile(string);
 		}.bind(this);
 		
