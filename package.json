@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "node-express-logger",
   "version": "0.0.1",
   "description": "logger module",
   "author": {
