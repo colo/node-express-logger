@@ -29,7 +29,7 @@ module.exports = new Class({
 	
 	initialize: function(app, options){
 		//const mount = app.app.mountpath || app.options.path;
-		console.log('---Logger: '+app.options.id);
+		//console.log('---Logger: '+app.options.id);
 			
 		//options.id = options.id || app.options.path.replace("/", "").replace(/\//g, ".");
 		
@@ -37,7 +37,7 @@ module.exports = new Class({
 		
 		this.setOptions(options);
 		
-		//console.log(this.options);
+		////console.log(this.options);
 		
 		if(this.options.loggers){
 			
@@ -68,13 +68,13 @@ module.exports = new Class({
 		}
 		else{
 			var transports = [];
-			//console.log(typeof(obj));
+			////console.log(typeof(obj));
 			if(typeof(obj) != 'array' && obj.transport){
 				transports.push(this.create_transport(id, obj));
 			}
 			else if (typeof(obj) == 'array' || typeof(obj) == 'object'){
 				Array.each(obj, function(item, index){
-					//console.log(typeof(item));
+					////console.log(typeof(item));
 					if(item.transport){
 						transports.push(this.create_transport(id, item));
 					}
@@ -100,7 +100,7 @@ module.exports = new Class({
 		if(process.env.LOG_ENV)
 			options.level = process.env.LOG_ENV;
 		
-		//console.log(winston.transports.File);
+		////console.log(winston.transports.File);
 		
 		//if(obj.transport == winston.transports.File && options.filename == null){
 		if(options.filename == null){
@@ -114,7 +114,7 @@ module.exports = new Class({
 		}
 		
 		//var transport = 
-		//console.log(options.filename);
+		////console.log(options.filename);
 		return new (obj.transport)( options );
 	},
   extend_app: function(app){
@@ -161,8 +161,8 @@ module.exports = new Class({
   },
   /*error: function(){
 		return function error(req, res, next) {
-			console.log('---res.statusCode--');
-			console.log(res.statusCode);
+			//console.log('---res.statusCode--');
+			//console.log(res.statusCode);
 			//this.instance.loggers.get('access').log('info', req.method + ' ' + req.url  + ' - HTTP ' + req.httpVersion);
 			return next();
 		}.bind(this);
